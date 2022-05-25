@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
     <link 
-    rel="stylesheet"
+        rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.1.3/darkly/bootstrap.min.css"
         integrity="sha512-ZdxIsDOtKj2Xmr/av3D/uo1g15yxNFjkhrcfLooZV5fW0TT7aF7Z3wY1LOA16h0VgFLwteg14lWqlYUQK3to/w=="
         crossorigin="anonymous"
@@ -49,10 +49,10 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="./index.html">Home</a>
+                <a class="nav-link" href="./index.php">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./add.html">Add Contact</a>
+                <a class="nav-link" href="./add.php">Add Contact</a>
               </li>
             </ul>
           </div>

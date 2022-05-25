@@ -1,3 +1,8 @@
+  <?php
+    if ($_SERVER["REQUEST_METHOD"]==="POST") {
+      echo json_encode($_POST);
+    }
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,13 +10,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
+    <!-- Bootstrap -->
     <link 
-    rel="stylesheet"
+        rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.1.3/darkly/bootstrap.min.css"
         integrity="sha512-ZdxIsDOtKj2Xmr/av3D/uo1g15yxNFjkhrcfLooZV5fW0TT7aF7Z3wY1LOA16h0VgFLwteg14lWqlYUQK3to/w=="
         crossorigin="anonymous"
         referrerpolicy="no-referrer">
-        <script
+    <script
         defer
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
@@ -42,10 +48,10 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="./index.html">Home</a>
+                <a class="nav-link" href="./index.php">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./add.html">Add Contact</a>
+                <a class="nav-link" href="./add.php">Add Contact</a>
               </li>
             </ul>
           </div>
@@ -58,7 +64,7 @@
               <div class="card">
                 <div class="card-header">Add New Contact</div>
                 <div class="card-body">
-                  <form>
+                  <form method="POST" action="add.php">
                     <div class="mb-3 row">
                       <label for="name" class="col-md-4 col-form-label text-md-end">Name</label>
         
