@@ -1,0 +1,15 @@
+{
+    /*Espacios de tabulacion*/
+    "php":{
+        "editor.tabSize":2,
+    },
+    "html":{
+        "editor.tabSize":2,
+    },
+    "javascript":{
+        "editor.tabSize":2
+    },
+    "files.insertFinalNewline": true,
+    "editor.fontSize": 16,
+    "editor.lineHeight": 26,
+}
