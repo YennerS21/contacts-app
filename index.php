@@ -1,9 +1,9 @@
 <?php
-  $contacts = [
-    ["name"=> "Alix", "phone_number"=>"14785212"],
-    ["name"=> "Juana", "phone_number"=>"69845165"],
-    ["name"=> "Valentina", "phone_number"=>"65478933"],
-  ];
+  if (file_exists("contacts.json")) {
+    $contacts = json_decode(file_get_contents("contacts.json"), true);
+  }else{
+    $contacts = [];
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,6 +61,16 @@
       <main>
         <div class="container pt-4 p-3">
           <div class="row">
+            <!-- Validar que existan contactos -->
+            <?php if(count($contacts)==0):?>
+              <div class="col-md-4 mx-auto">
+                <div class="card card-body text-center">
+                  <p>No contacts saved yet</p>
+                  <a href="add.php">Add One!</a>
+                </div>
+              </div>
+            <?php endif;?>
+            <!-- Leer y mostrar datos -->
             <?php foreach($contacts as $contact) :?>
               <div class="col-md-4 mb-3">
                 <div class="card text-center">
