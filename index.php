@@ -1,4 +1,5 @@
 <?php
+  // Validamos la existencia de los datos
   if (file_exists("contacts.json")) {
     $contacts = json_decode(file_get_contents("contacts.json"), true);
   }else{
@@ -61,7 +62,7 @@
       <main>
         <div class="container pt-4 p-3">
           <div class="row">
-            <!-- Validar que existan contactos -->
+            <!-- Validar lista de contactos vacia -->
             <?php if(count($contacts)==0):?>
               <div class="col-md-4 mx-auto">
                 <div class="card card-body text-center">

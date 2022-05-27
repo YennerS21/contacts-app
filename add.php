@@ -1,17 +1,20 @@
   <?php
+    //Verificar metodo del request: POST
     if ($_SERVER["REQUEST_METHOD"]==="POST") {
-      //Obtener datos
+      //Obtener datos de POST
       $contact = [
         "name"        =>$_POST["name"], 
         "phone_number"=>$_POST["phone_number"]
       ];
+      //Validar la existencia de los datos
       if (file_exists("contacts.json")) {
         $contacts = json_decode(file_get_contents("contacts.json"), true);
       }else{
         $contacts = [];
       }
+      //Añadir nuevo contacto
       $contacts[] = $contact;
-
+      //Escribe el dato en un archivo: contacts.json 
       file_put_contents("contacts.json", json_encode($contacts));
       header("Location:index.php");
     }
@@ -22,7 +25,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
     <!-- Bootstrap -->
     <link 
         rel="stylesheet"
