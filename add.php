@@ -1,22 +1,21 @@
   <?php
+    require 'db.php';
+    $error=null;
     //Verificar metodo del request: POST
     if ($_SERVER["REQUEST_METHOD"]==="POST") {
       //Obtener datos de POST
-      $contact = [
-        "name"        =>$_POST["name"], 
-        "phone_number"=>$_POST["phone_number"]
-      ];
-      //Validar la existencia de los datos
-      if (file_exists("contacts.json")) {
-        $contacts = json_decode(file_get_contents("contacts.json"), true);
-      }else{
-        $contacts = [];
-      }
-      //Añadir nuevo contacto
-      $contacts[] = $contact;
-      //Escribe el dato en un archivo: contacts.json 
-      file_put_contents("contacts.json", json_encode($contacts));
-      header("Location:index.php");
+
+      if (empty($_POST['name']) || empty($_POST['phone_number'])) {
+        $error = "Please fill all fields.";
+      }elseif (!is_numeric($_POST['phone_number'])) {
+          $error = "Phone number isnot number";
+      }elseif ($error===null){
+        $statement = $conn->prepare("INSERT INTO contacts(name, phone_number) VALUES(:name, :phone_number)");
+        $statement->bindParam(":name",trim($_POST['name']));
+        $statement->bindParam(":phone_number",trim($_POST['phone_number']));
+        $statement->execute();
+        header('Location:index.php');
+      }  
     }
   ?>
 <!DOCTYPE html>
@@ -79,12 +78,17 @@
               <div class="card">
                 <div class="card-header">Add New Contact</div>
                 <div class="card-body">
+                  <?php if($error) :?>
+                    <p class="text-danger">
+                      <?= $error ?>
+                    </p>
+                  <?php endif; ?>
                   <form method="POST" action="add.php">
                     <div class="mb-3 row">
                       <label for="name" class="col-md-4 col-form-label text-md-end">Name</label>
         
                       <div class="col-md-6">
-                        <input id="name" type="text" class="form-control" name="name" required autocomplete="name" autofocus>
+                        <input id="name" type="text" class="form-control" name="name"  autocomplete="name" autofocus>
                       </div>
                     </div>
         
@@ -92,7 +96,7 @@
                       <label for="phone_number" class="col-md-4 col-form-label text-md-end">Phone Number</label>
         
                       <div class="col-md-6">
-                        <input id="phone_number" type="tel" class="form-control" name="phone_number" required autocomplete="phone_number" autofocus>
+                        <input id="phone_number" type="tel" class="form-control" name="phone_number"  autocomplete="phone_number" autofocus>
                       </div>
                     </div>
         

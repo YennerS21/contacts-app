@@ -1,10 +1,7 @@
 <?php
-  // Validamos la existencia de los datos
-  if (file_exists("contacts.json")) {
-    $contacts = json_decode(file_get_contents("contacts.json"), true);
-  }else{
-    $contacts = [];
-  }
+  require 'db.php';
+  $contacts = $conn->query("SELECT * FROM contacts");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,10 +47,10 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="./index.php">Home</a>
+                <a class="nav-link" href="index.php">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./add.php">Add Contact</a>
+                <a class="nav-link" href="add.php">Add Contact</a>
               </li>
             </ul>
           </div>
@@ -63,7 +60,7 @@
         <div class="container pt-4 p-3">
           <div class="row">
             <!-- Validar lista de contactos vacia -->
-            <?php if(count($contacts)==0):?>
+            <?php if($contacts->rowCount()==0):?>
               <div class="col-md-4 mx-auto">
                 <div class="card card-body text-center">
                   <p>No contacts saved yet</p>
