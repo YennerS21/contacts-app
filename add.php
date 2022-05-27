@@ -3,12 +3,11 @@
     $error=null;
     //Verificar metodo del request: POST
     if ($_SERVER["REQUEST_METHOD"]==="POST") {
-      //Obtener datos de POST
-
+      //Validar datos correctos
       if (empty($_POST['name']) || empty($_POST['phone_number'])) {
         $error = "Please fill all fields.";
       }elseif (!is_numeric($_POST['phone_number'])) {
-          $error = "Phone number isnot number";
+        $error = "Phone number isnot number";
       }elseif ($error===null){
         $statement = $conn->prepare("INSERT INTO contacts(name, phone_number) VALUES(:name, :phone_number)");
         $statement->bindParam(":name",trim($_POST['name']));
