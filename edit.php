@@ -31,7 +31,7 @@
           ':name'=>$_POST['name'],
           ':phoneNumber'=>$_POST['phone_number']
         ]);
-        header('Location:index.php');
+        header('Location:home.php');
       }  
     }
 ?>

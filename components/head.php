@@ -18,7 +18,14 @@
         crossorigin="anonymous">
     </script>
     <!-- Static Contents -->
-    <link rel="stylesheet" href="./static/css/index.css">
+    <link rel="stylesheet" href="static/css/index.css">
+    <?php $uri=$_SERVER["REQUEST_URI"]; ?>
+    <?php if($uri === "/index.php" || $uri==="/") :?>
+        <script 
+            defer 
+            src="static/js/welcome.js">
+        </script>
+    <?php endif;?>
     <title>Contacts App</title>
 </head>
 <body>

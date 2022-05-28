@@ -13,7 +13,7 @@
         $statement->bindParam(":name",trim($_POST['name']));
         $statement->bindParam(":phone_number",trim($_POST['phone_number']));
         $statement->execute();
-        header('Location:index.php');
+        header('Location:home.php');
       }  
     }
   ?>
