@@ -1,5 +1,9 @@
   <?php
     require 'db.php';
+    session_start();
+    if (!isset($_SESSION["user"])) {
+      header("Location:login.php");
+    }
     $error=null;
     //Verificar metodo del request: POST
     if ($_SERVER["REQUEST_METHOD"]==="POST") {

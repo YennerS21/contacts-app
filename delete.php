@@ -1,5 +1,9 @@
 <?php
   require 'db.php';
+  session_start();
+  if (!isset($_SESSION["user"])) {
+    header("Location:login.php");
+  }
   $id = $_GET['id'];
   $statement = $conn->prepare("SELECT id FROM contacts WHERE id=:id");
   $statement->execute([':id'=>$id]);

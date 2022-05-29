@@ -1,5 +1,9 @@
 <?php
     require 'db.php';
+    session_start();
+    if (!isset($_SESSION["user"])) {
+      header("Location:login.php");
+    }
     //Obtener identifidor del contacto a editar
     $id = $_GET['id'];
     //Identificar que exista tal usuario
