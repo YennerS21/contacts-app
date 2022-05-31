@@ -4,8 +4,8 @@
   if (!isset($_SESSION["user"])) {
     header("Location:index.php");
   }
-  $contacts = $conn->query("SELECT * FROM contacts");
-
+  $id = intval($_SESSION["user"]["id"]);
+  $contacts = $conn->query("SELECT * FROM contacts WHERE user_id={$id}");
 ?>
 <?php require 'components/head.php' ?>
 <div class="container pt-4 p-3">

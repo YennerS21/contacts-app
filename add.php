@@ -13,7 +13,9 @@
       }elseif (!is_numeric($_POST['phone_number'])) {
         $error = "Phone number isnot number";
       }elseif ($error===null){
-        $statement = $conn->prepare("INSERT INTO contacts(name, phone_number) VALUES(:name, :phone_number)");
+        $statement = $conn->prepare("INSERT INTO contacts(user_id, name, phone_number) 
+                  VALUES(:id, :name, :phone_number)");
+        $statement->bindParam(":id", $_SESSION["user"]["id"]);
         $statement->bindParam(":name",trim($_POST['name']));
         $statement->bindParam(":phone_number",trim($_POST['phone_number']));
         $statement->execute();

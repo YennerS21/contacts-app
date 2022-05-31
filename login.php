@@ -9,9 +9,9 @@
         $password = trim($_POST['password']);
         //Validar email
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $error = "Correo invalido";
+          $error = "Correo invalido";
         }
-        $statement = $conn->prepare("SELECT email, password FROM users WHERE email=:email LIMIT 1");
+        $statement = $conn->prepare("SELECT id, email, password FROM users WHERE email=:email LIMIT 1");
         $statement->bindParam(":email",$email);
         $statement->execute();
         //Verificar si el correo existe
