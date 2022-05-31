@@ -15,8 +15,13 @@
       echo "Http 404 not found";
       return;
     }
+    $contact = $statement->fetch(PDO::FETCH_ASSOC);
+    if (intval($_SESSION["user"]["id"]) !== intval($contact['user_id'])) {
+      http_response_code(403);
+      echo "Http 403 unauthorized";
+      return;
+    }
     //Convertir resultado del query a un array asociativo
-    $contacts = $statement->fetch(PDO::FETCH_ASSOC);
     $error=null;
     //Verificar metodo del request: POST
     if ($_SERVER["REQUEST_METHOD"]==="POST") {
@@ -51,12 +56,12 @@
               <?= $error ?>
             </p>
           <?php endif; ?>
-          <form method="POST" action="edit.php?id=<?=$contacts['id']?>">
+          <form method="POST" action="edit.php?id=<?=$contact['id']?>">
             <div class="mb-3 row">
               <label for="name" class="col-md-4 col-form-label text-md-end">Name</label>
 
               <div class="col-md-6">
-                <input value="<?= $contacts['name']?>" type="text" class="form-control" name="name"  autocomplete="name" autofocus>
+                <input value="<?= $contact['name']?>" type="text" class="form-control" name="name"  autocomplete="name" autofocus>
               </div>
             </div>
 
@@ -64,7 +69,7 @@
               <label for="phone_number" class="col-md-4 col-form-label text-md-end">Phone Number</label>
 
               <div class="col-md-6">
-                <input value="<?= $contacts['phone_number']?>" id="phone_number" type="tel" class="form-control" name="phone_number"  autocomplete="phone_number" autofocus>
+                <input value="<?= $contact['phone_number']?>" id="phone_number" type="tel" class="form-control" name="phone_number"  autocomplete="phone_number" autofocus>
               </div>
             </div>
 
