@@ -12,13 +12,17 @@
     //Validar para cuando no exista el usuario
     if($statement->rowCount()==0){
       http_response_code(404);
-      echo "Http 404 not found";
+      $_SESSION["flash"] = ["message"=>"Http 404 not found"];
+      header("Location:home.php");
+      // echo "Http 404 not found";
       return;
     }
     $contact = $statement->fetch(PDO::FETCH_ASSOC);
     if (intval($_SESSION["user"]["id"]) !== intval($contact['user_id'])) {
       http_response_code(403);
-      echo "Http 403 unauthorized";
+      $_SESSION["flash"] = ["message"=>"Http 403 unauthorized"];
+      header("Location:home.php");
+      // echo "Http 403 unauthorized";
       return;
     }
     //Convertir resultado del query a un array asociativo
@@ -40,7 +44,9 @@
           ':name'=>$_POST['name'],
           ':phoneNumber'=>$_POST['phone_number']
         ]);
+        $_SESSION["flash"] = ["message"=>"Contact {$_POST['name']} updated."];
         header('Location:home.php');
+        return;
       }  
     }
 ?>
