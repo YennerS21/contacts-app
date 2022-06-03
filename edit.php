@@ -44,7 +44,10 @@
           ':name'=>$_POST['name'],
           ':phoneNumber'=>$_POST['phone_number']
         ]);
-        $_SESSION["flash"] = ["message"=>"Contact {$_POST['name']} updated."];
+        $_SESSION["flash"] = [
+          "message"=>"Contact {$_POST['name']} updated.",
+          "alert" => "warning"
+        ];
         header('Location:home.php');
         return;
       }  
@@ -81,7 +84,7 @@
 
             <div class="mb-3 row">
               <div class="col-md-6 offset-md-4">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Update</button>
               </div>
             </div>
           </form>

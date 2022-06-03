@@ -11,7 +11,7 @@
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
           $error = "Correo invalido";
         }
-        $statement = $conn->prepare("SELECT id, email, password FROM users WHERE email=:email LIMIT 1");
+        $statement = $conn->prepare("SELECT * FROM users WHERE email=:email LIMIT 1");
         $statement->bindParam(":email",$email);
         $statement->execute();
         //Verificar si el correo existe
@@ -23,7 +23,6 @@
           if (!password_verify($password,$user["password"])) {
             $error = "Credentials incorrect.";
           }else{
-            unset($user['password']);
             session_start();
             $_SESSION["user"] = $user;
             header("Location:home.php");
@@ -50,13 +49,13 @@
             <div class="mb-3 row">
               <label for="email" class="col-md-4 col-form-label text-md-end">Email</label>
               <div class="col-md-6">
-                <input id="email" type="text" class="form-control" name="email"  autocomplete="phone_number" autofocus>
+                <input id="email" type="text" class="form-control" name="email"  autocomplete="phone_number" placeholder="sofia4@example.com">
               </div>
             </div>
             <div class="mb-3 row">
               <label for="password" class="col-md-4 col-form-label text-md-end">Password</label>
               <div class="col-md-6">
-                <input id="password" type="password" class="form-control" name="password"  autocomplete="phone_number" autofocus>
+                <input id="password" type="password" class="form-control" name="password"  autocomplete="phone_number" placeholder="********">
               </div>
             </div>
             <div class="mb-3 row">

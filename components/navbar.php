@@ -25,6 +25,9 @@
             <li class="nav-item">
               <a class="nav-link" href="add.php">Add Contact</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="settings.php?id=<?=$_SESSION['user']['id']?>">Settings</a>
+            </li>
           <?php else : ?>  
             <li class="nav-item">
               <a class="nav-link" href="register.php">Register</a>
@@ -34,11 +37,12 @@
             </li>
           <?php endif ?>  
         </ul>
-        <div>
+        <div class="d-flex">Dia/noche</div>
+        <div class="d-flex">
           <?php if(isset($_SESSION["user"])):?>
-            <p>
+            <p class="">
               <?=$_SESSION["user"]["email"]?>
-            </p>
+            |</p>
             <a href="logout.php">Exit</a>
           <?php endif ?>  
         </div>

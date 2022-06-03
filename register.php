@@ -55,18 +55,18 @@
             <div class="mb-3 row">
               <label for="email" class="col-md-4 col-form-label text-md-end">Email</label>
               <div class="col-md-6">
-                <input id="email" type="text" class="form-control" name="email"  autocomplete="phone_number" autofocus>
+                <input id="email" type="text" class="form-control" name="email"  autocomplete="phone_number" >
               </div>
             </div>
             <div class="mb-3 row">
               <label for="password" class="col-md-4 col-form-label text-md-end">Password</label>
               <div class="col-md-6">
-                <input id="password" type="password" class="form-control" name="password"  autocomplete="phone_number" autofocus>
+                <input id="password" type="password" class="form-control" name="password"  autocomplete="phone_number" placeholder="******">
               </div>
             </div>
             <div class="mb-3 row">
               <div class="col-md-6 offset-md-4">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Send</button>
               </div>
             </div>
           </form>

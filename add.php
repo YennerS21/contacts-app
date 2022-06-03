@@ -19,7 +19,10 @@
         $statement->bindParam(":name",trim($_POST['name']));
         $statement->bindParam(":phone_number",trim($_POST['phone_number']));
         $statement->execute();
-        $_SESSION["flash"] = ["message"=>"Contact {$_POST['name']} added."];
+        $_SESSION["flash"] = [
+          "message" => "Contact {$_POST['name']} added.",
+          "alert"   => "success"
+        ];
         header('Location:home.php');
         return;
       }  
@@ -52,7 +55,7 @@
             </div>
             <div class="mb-3 row">
               <div class="col-md-6 offset-md-4">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Save</button>
               </div>
             </div>
           </form>
